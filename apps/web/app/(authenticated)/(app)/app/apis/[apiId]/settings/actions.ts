@@ -80,7 +80,7 @@ export const updateIpWhitelist = serverAction({
           ipWhitelist: input.ips.join(","),
         })
         .where(eq(schema.apis.id, input.apiId));
-      await db.insert(schema.auditLogs).values({
+      await tx.insert(schema.auditLogs).values({
         id: newId("auditLog"),
         workspaceId: ws.id,
         apiId: api.id,
